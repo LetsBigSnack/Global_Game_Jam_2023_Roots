@@ -7,32 +7,55 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D playerRB;
-    [SerializeField] private float _playerSpeed = 8f;
-    [SerializeField] private float _dashSpeed = 16f;
+    [SerializeField] private float _normalSpeed = 8f;
+    [SerializeField] private float _playerSpeed;
+
+    [SerializeField] private Vector2 moveVector;
+
+    [Header("Dash")] 
+    [SerializeField] private bool canDash = true;
+    [SerializeField] private bool isDashing;
+    [SerializeField] private float dashingSpeed = 32f;
+    [SerializeField] private float dashingTime = 0.3f;
+    [SerializeField] private float dashingCooldown = 1f;
+
     
     
-    private bool isDashAvailable = true;
-    private float dashCooldown = 100;
-    
+    private void Start()
+    {
+        _playerSpeed = _normalSpeed;
+    }
+
+
     void Update()
     {
-        InputSystem.Update();
-        //TODO make camera move
+        playerRB.velocity = new Vector2(moveVector.x * _playerSpeed, moveVector.y * _playerSpeed);
     }
 
     public void MovePlayer(InputAction.CallbackContext context)
     {   
-        Vector2 newVelocityVector = context.ReadValue<Vector2>();
-        playerRB.velocity = new Vector2(newVelocityVector.x * _playerSpeed, newVelocityVector.y * _playerSpeed);
+        moveVector = context.ReadValue<Vector2>();
     }
 
     public void ActivateDash(InputAction.CallbackContext context)
     {
         //TODO Fix Action while other movement is currently pressed 
-        if (context.performed && isDashAvailable)
+        if (context.performed && canDash)
         {
-            _playerSpeed = _dashSpeed;
-            isDashAvailable = false;
+            StartCoroutine(Dash());
         }
     }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        _playerSpeed = dashingSpeed;
+        yield return new WaitForSeconds(dashingTime);
+        isDashing = false;
+        _playerSpeed = _normalSpeed;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+    
 }
