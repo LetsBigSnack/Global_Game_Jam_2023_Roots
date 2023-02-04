@@ -148,11 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 3
+  _dmg: 5
   spawnedEnemy: {fileID: 6937306494568708636, guid: 1c183716a43273447ac4b72c68a692e1, type: 3}
   invincibilityFrame: 15
   currentinvincibilityFrame: 0
   isInvincible: 1
   exp: {fileID: 3647000408705859400, guid: 631f9190fcaec38419e1425c60a9da0d, type: 3}
+  isDead: 0
 --- !u!95 &3948694572771412324
 Animator:
   serializedVersion: 5

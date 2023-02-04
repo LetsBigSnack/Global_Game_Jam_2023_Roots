@@ -14,9 +14,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 moveVector;
 
     [SerializeField] private Animator _playerAnim;
-    [SerializeField] private float _health;
-    [SerializeField] private float _maxHealth = 100;
-    
+    [SerializeField] private SpriteRenderer _playerSprite;
+    [SerializeField] public float _health = 40;
+    [SerializeField] public float _maxHealth = 40;
+
+    [SerializeField] public Collider2D _hitBox;
+    [SerializeField] private Coroutine _invinc;
+    [SerializeField] private bool _invincible; 
+    [SerializeField] private Coroutine _flash;
+    [SerializeField] private Material _standard;
+    [SerializeField] private Material _hurt;
 
     [Header("Dash")] 
     [SerializeField] private bool canDash = true;
@@ -40,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _health = _maxHealth;
         _playerAnim = GetComponent<Animator>();
+        _playerSprite = GetComponent<SpriteRenderer>();
         _playerSpeed = _normalSpeed;
         currentLevel = 1;
         levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
@@ -129,6 +137,36 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    public void OnTriggerEnter2D(Collider2D other) {
+
+        if(other.gameObject.tag == "enemy" && _invincible == false)
+        {
+            //add a boolean to check if the whole DMG is possible -> otherwise u might not get dmg, but the flashing would start. Fixed that.
+            _invincible = true;
+            _health -= other.gameObject.GetComponent<EnemyBehaviour>()._dmg;
+            if (_invinc != null)
+            {
+                StopCoroutine(_invinc);
+            }
+            _invinc = StartCoroutine(invincibility());
+
+            //starting a flash routine for feedback to the player
+            if (_flash != null)
+            {
+                StopCoroutine(_flash);
+            }
+            _flash = StartCoroutine(hurt());
+
+            //destroying the playerObject on health 0
+            if(_health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    
+    
+    }
+
     public void AddHealth(float health)
     {
         _health += health;
@@ -139,5 +177,32 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject newStar = Instantiate(_auroStar, playerRB.position, Quaternion.identity, playerRB.transform);
     }
-    
+
+    public IEnumerator invincibility()
+    {
+        _hitBox.enabled = false;
+        yield return new WaitForSeconds(1);
+        _hitBox.enabled = true;
+        //changes the boolean back so dmg is possible
+        _invincible = false;
+
+    }
+
+    public IEnumerator hurt()
+    {
+        //add two different types of materials to show somekind of flashing
+
+        _playerSprite.material =  _hurt;
+        yield return new WaitForSeconds(0.1f);
+        _playerSprite.material =  _standard;
+        yield return new WaitForSeconds(0.1f);
+        _playerSprite.material =  _hurt;
+        yield return new WaitForSeconds(0.1f);
+        _playerSprite.material =  _standard;
+        yield return new WaitForSeconds(0.1f);
+        _playerSprite.material =  _hurt;
+        yield return new WaitForSeconds(0.1f);
+        _playerSprite.material = _standard;
+    }
+
 }

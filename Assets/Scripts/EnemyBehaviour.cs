@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     private GameObject _player;
     private EnemyManager manager;
     [SerializeField] private float _movementSpeed = 3;
+    [SerializeField] public float _dmg;
     [SerializeField] private GameObject spawnedEnemy;
     [SerializeField] private int invincibilityFrame = 5;
     [SerializeField] private int currentinvincibilityFrame = 0;
