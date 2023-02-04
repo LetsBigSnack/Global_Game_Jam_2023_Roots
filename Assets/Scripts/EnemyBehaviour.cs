@@ -8,6 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private Rigidbody2D _enemyRB;
     private GameObject _player;
+    private EnemyManager manager;
     [SerializeField] private float _movementSpeed = 3;
     [SerializeField] private GameObject spawnedEnemy;
     [SerializeField] private int invincibilityFrame = 5;
@@ -20,18 +21,25 @@ public class EnemyBehaviour : MonoBehaviour
         
         _player = FindObjectOfType<PlayerMovement>().gameObject;
         _enemyRB = GetComponent<Rigidbody2D>();
+        manager = FindObjectOfType<EnemyManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float x_Direction =  _player.transform.position.x - transform.position.x;
-        float y_Direction = _player.transform.position.y - transform.position.y;
-        double hypotenuse = Math.Sqrt(x_Direction * x_Direction + y_Direction * y_Direction);
-        float x_Direction_normalized = (float)(x_Direction / hypotenuse);
-        float y_Direction_normalized = (float)(y_Direction / hypotenuse);
-        _enemyRB.velocity = new Vector2(x_Direction_normalized * _movementSpeed, y_Direction_normalized * _movementSpeed);
-        
+        if (manager.enabled)
+        {
+            float x_Direction =  _player.transform.position.x - transform.position.x;
+            float y_Direction = _player.transform.position.y - transform.position.y;
+            double hypotenuse = Math.Sqrt(x_Direction * x_Direction + y_Direction * y_Direction);
+            float x_Direction_normalized = (float)(x_Direction / hypotenuse);
+            float y_Direction_normalized = (float)(y_Direction / hypotenuse);
+            _enemyRB.velocity = new Vector2(x_Direction_normalized * _movementSpeed * manager.speedDebuff, y_Direction_normalized * _movementSpeed * manager.speedDebuff);
+        }
+        else
+        {
+            _enemyRB.velocity = new Vector2();
+        }
     }
 
     private void FixedUpdate()
@@ -65,5 +73,10 @@ public class EnemyBehaviour : MonoBehaviour
             GameObject exp1 = Instantiate(exp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDisable()
+    {
+        _enemyRB.velocity = new Vector2();
     }
 }

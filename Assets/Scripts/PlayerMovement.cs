@@ -27,17 +27,23 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
     [SerializeField] private int currentXP = 0;
 
+    [Header("UI")] 
+    [SerializeField] private LevelUPManager _levelUpManager;
+
     private void Start()
     {
         _playerAnim = GetComponent<Animator>();
         _playerSpeed = _normalSpeed;
         currentLevel = 1;
         levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
+        _levelUpManager = Resources.FindObjectsOfTypeAll<LevelUPManager>()[0];
+        
     }
 
 
     void Update()
     {
+        Debug.Log("Update");
         playerRB.velocity = new Vector2(moveVector.x * _playerSpeed, moveVector.y * _playerSpeed);
         SetDirectionValues();
     }
@@ -81,8 +87,10 @@ public class PlayerMovement : MonoBehaviour
         if (currentXP >= levelThreshold)
         {
             currentLevel++;
+            enabled = false;
             levelThreshold = CalculateNextThreshold(currentLevel);
             Debug.Log("LEVEL UP: " + currentLevel);
+            _levelUpManager.ShowLevelUp();
         }
     }
 
@@ -91,4 +99,18 @@ public class PlayerMovement : MonoBehaviour
         return (int) Math.Round((float)(4 * (level*level*level)) / 5);
     }
 
+    private void OnDisable()
+    {
+        Debug.Log("Player Disabled");
+        playerRB.velocity = new Vector2();
+        //TODO on enable invc. / shock wave enemy
+    }
+
+    public void AddSpeed(int speed)
+    {
+        Debug.Log("I am SPEED");
+        _playerSpeed += speed;
+        _normalSpeed += speed;
+        dashingSpeed += speed;
+    }
 }
