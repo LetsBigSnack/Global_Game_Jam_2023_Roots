@@ -15,6 +15,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private int currentinvincibilityFrame = 0;
     [SerializeField] private bool isInvincible = true;
     [SerializeField] private GameObject exp;
+
+    [SerializeField] private bool isDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,20 +60,25 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (col.gameObject.tag == "sword" && !isInvincible)
         {
-            if (spawnedEnemy)
+            if (!isDead)
             {
+                isDead = true;
+                if (spawnedEnemy)
+                {
                 
-                float x_Direction =  _player.transform.position.x - transform.position.x;
-                float y_Direction = _player.transform.position.y - transform.position.y;
-                double hypotenuse = Math.Sqrt(x_Direction * x_Direction + y_Direction * y_Direction);
-                float x_Direction_normalized = (float)(x_Direction / hypotenuse);
-                float y_Direction_normalized = (float)(y_Direction / hypotenuse);
+                    float x_Direction =  _player.transform.position.x - transform.position.x;
+                    float y_Direction = _player.transform.position.y - transform.position.y;
+                    double hypotenuse = Math.Sqrt(x_Direction * x_Direction + y_Direction * y_Direction);
+                    float x_Direction_normalized = (float)(x_Direction / hypotenuse);
+                    float y_Direction_normalized = (float)(y_Direction / hypotenuse);
                 
-                GameObject newEnemy1 = Instantiate(spawnedEnemy, new Vector3(transform.position.x-x_Direction_normalized*2, transform.position.y, 0), Quaternion.identity);
-                GameObject newEnemy2 = Instantiate(spawnedEnemy, new Vector3(transform.position.x, transform.position.y-y_Direction_normalized*2, 0), Quaternion.identity);
+                    GameObject newEnemy1 = Instantiate(spawnedEnemy, new Vector3(transform.position.x-x_Direction_normalized*2, transform.position.y, 0), Quaternion.identity);
+                    GameObject newEnemy2 = Instantiate(spawnedEnemy, new Vector3(transform.position.x, transform.position.y-y_Direction_normalized*2, 0), Quaternion.identity);
+                }
+                GameObject exp1 = Instantiate(exp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                Destroy(this.gameObject);
             }
-            GameObject exp1 = Instantiate(exp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-            Destroy(this.gameObject);
+            
         }
     }
 

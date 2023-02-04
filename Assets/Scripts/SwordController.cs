@@ -16,6 +16,10 @@ public class SwordController : MonoBehaviour
     [SerializeField] private bool canAttack = true;
     [SerializeField] private float _attackDuration = 0.3f;
     [SerializeField] private float _attackCooldown = 0.5f;
+    [SerializeField] private GameObject _swordHead;
+    [SerializeField] private GameObject _swordBody;
+    [SerializeField] public int currentLength = 0;
+    [SerializeField] public int maxLength = 4;
     
     // Start is called before the first frame update
     void Start()
@@ -37,7 +41,7 @@ public class SwordController : MonoBehaviour
  
         //center.position = pivot.position;
         center.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
+        
     }
 
     public void GetMousePosition(InputAction.CallbackContext context)
@@ -58,16 +62,34 @@ public class SwordController : MonoBehaviour
     private IEnumerator Attack()
     {
         _collider2D.enabled = true;
+        BoxCollider2D[] childColliders = GetComponentsInChildren<BoxCollider2D>();
+        foreach (var boxCollider2D in childColliders)
+        {
+            boxCollider2D.enabled = true;
+        }
         canAttack = false;
         yield return new WaitForSeconds(_attackDuration);
         _collider2D.enabled = false;
+        foreach (var boxCollider2D in childColliders)
+        {
+            boxCollider2D.enabled = false;
+        }
         yield return new WaitForSeconds(_attackCooldown);
         canAttack = true;
     }
-    
-    private void OnTriggerEnter2D(Collider2D col)
+
+    public void AddLength()
     {
-       return;
+        if (currentLength <= maxLength)
+        {
+            GameObject newBody = Instantiate(_swordBody, new Vector3(_swordHead.transform.position.x, _swordHead.transform.position.y, 0),
+                _swordBody.transform.rotation, transform);
+            newBody.transform.Rotate(0,0,-newBody.transform.rotation.z);
+            Debug.Log("Rotation: "+newBody.transform.rotation.z);
+            _swordHead.transform.localPosition =
+                new Vector3(_swordHead.transform.localPosition.x, _swordHead.transform.localPosition.y+1, 0);
+            Debug.Log("Rotation: "+newBody.transform.rotation.z);
+            currentLength++;
+        }
     }
-    
 }

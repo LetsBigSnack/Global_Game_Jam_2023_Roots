@@ -5,18 +5,42 @@ using UnityEngine;
 
 public class LevelUPManager : MonoBehaviour
 {
-    [SerializeField] private PowerUps[] _powerUpOptions;
+    public PowerUps[] _powerUpOptions;
+    public List<PowerUps> _allAvailablePowerUps;
     
     // Start is called before the first frame update
     void Start()
     {
+        _allAvailablePowerUps = new List<PowerUps>();
+        _allAvailablePowerUps.Add(new SpeedPowerUp(this, FindObjectOfType<PlayerMovement>()));
+        _allAvailablePowerUps.Add(new SlowPowerUp(this, FindObjectOfType<PlayerMovement>()));
+        _allAvailablePowerUps.Add(new HealthPowerUp(this, FindObjectOfType<PlayerMovement>()));
+        _allAvailablePowerUps.Add(new AuraPowerUp(this, FindObjectOfType<PlayerMovement>()));
+        _allAvailablePowerUps.Add(new LengthPowerUp(this, FindObjectOfType<PlayerMovement>()));
+        _allAvailablePowerUps.Add(new XpPowerUp(this, FindObjectOfType<PlayerMovement>()));
+        
         gameObject.SetActive(false);
         _powerUpOptions = new PowerUps[3];
-        _powerUpOptions[0] = new AuraPowerUp(this, FindObjectOfType<PlayerMovement>());
-        _powerUpOptions[1] = new SlowPowerUp(this, FindObjectOfType<PlayerMovement>());
-        _powerUpOptions[2] = new XpPowerUp(this, FindObjectOfType<PlayerMovement>());
+        ShuffelOptions();
     }
 
+    private void ShuffelOptions()
+    {
+        SwordController sc = FindObjectOfType<SwordController>();
+        if (sc.currentLength >= sc.maxLength)
+        {
+            var itemToRemove = _allAvailablePowerUps.Single(r => r.GetType() == typeof(LengthPowerUp));
+            _allAvailablePowerUps.Remove(itemToRemove);
+        }
+        
+        System.Random rnd = new System.Random();
+        _allAvailablePowerUps = _allAvailablePowerUps.OrderBy(x => rnd.Next()).Take(3).ToList();
+
+        _powerUpOptions[0] = _allAvailablePowerUps[0];
+        _powerUpOptions[1] = _allAvailablePowerUps[1];
+        _powerUpOptions[2] = _allAvailablePowerUps[2];
+    }
+    
     public void ShowLevelUp()
     {
         //Pause Game
@@ -43,6 +67,7 @@ public class LevelUPManager : MonoBehaviour
 
     public void CloseLevelUp()
     {
+        ShuffelOptions();
         enableAllEntities();
         gameObject.SetActive(false);
     }
@@ -87,6 +112,12 @@ public class LevelUPManager : MonoBehaviour
     {
         EnemyManager spawner = FindObjectOfType<EnemyManager>();
         spawner.SlowDown();
+    }
+
+    public void AddLength()
+    {
+        SwordController sword = FindObjectOfType<SwordController>();
+        sword.AddLength();
     }
     
 }
