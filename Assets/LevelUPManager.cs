@@ -12,9 +12,9 @@ public class LevelUPManager : MonoBehaviour
     {
         gameObject.SetActive(false);
         _powerUpOptions = new PowerUps[3];
-        _powerUpOptions[0] = new SpeedPowerUp(this, FindObjectOfType<PlayerMovement>());
+        _powerUpOptions[0] = new AuraPowerUp(this, FindObjectOfType<PlayerMovement>());
         _powerUpOptions[1] = new SlowPowerUp(this, FindObjectOfType<PlayerMovement>());
-        _powerUpOptions[2] = new PowerUps(this, FindObjectOfType<PlayerMovement>());
+        _powerUpOptions[2] = new XpPowerUp(this, FindObjectOfType<PlayerMovement>());
     }
 
     public void ShowLevelUp()

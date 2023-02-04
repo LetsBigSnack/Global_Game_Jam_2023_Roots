@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 moveVector;
 
     [SerializeField] private Animator _playerAnim;
+    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth = 100;
+    
 
     [Header("Dash")] 
     [SerializeField] private bool canDash = true;
@@ -25,13 +28,17 @@ public class PlayerMovement : MonoBehaviour
     [Header("Exp")] 
     [SerializeField] private int currentLevel = 1;
     [SerializeField] private int levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
-    [SerializeField] private int currentXP = 0;
+    [SerializeField] private float currentXP = 0;
+    [SerializeField] private float xpMultiplicator = 1f;
 
+    [SerializeField] private GameObject _auroStar;
+    
     [Header("UI")] 
     [SerializeField] private LevelUPManager _levelUpManager;
-
+    
     private void Start()
     {
+        _health = _maxHealth;
         _playerAnim = GetComponent<Animator>();
         _playerSpeed = _normalSpeed;
         currentLevel = 1;
@@ -83,10 +90,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void collectXP()
     {
-        currentXP++;
+        currentXP += 1*xpMultiplicator;
         if (currentXP >= levelThreshold)
         {
             currentLevel++;
+            currentXP = 0;
             enabled = false;
             levelThreshold = CalculateNextThreshold(currentLevel);
             Debug.Log("LEVEL UP: " + currentLevel);
@@ -113,4 +121,23 @@ public class PlayerMovement : MonoBehaviour
         _normalSpeed += speed;
         dashingSpeed += speed;
     }
+
+    public void AddXpBonus()
+    { 
+        Debug.Log("I am XP");
+        xpMultiplicator *= 1.25f;
+        
+    }
+
+    public void AddHealth(float health)
+    {
+        _health += health;
+        _maxHealth += health;
+    }
+
+    public void AddAura()
+    {
+        GameObject newStar = Instantiate(_auroStar, playerRB.position, Quaternion.identity, playerRB.transform);
+    }
+    
 }
