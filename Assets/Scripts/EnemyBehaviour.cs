@@ -27,4 +27,15 @@ public class EnemyBehaviour : MonoBehaviour
         _enemyRB.velocity = new Vector2(x_Direction_normalized * _movementSpeed, y_Direction_normalized * _movementSpeed);
         
     }
+
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col.gameObject.tag);
+        if (col.gameObject.tag == "sword")
+        {
+            Debug.Log("HIT");
+            Destroy(this.gameObject);
+        }
+    }
 }

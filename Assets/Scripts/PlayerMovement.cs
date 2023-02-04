@@ -18,12 +18,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingSpeed = 32f;
     [SerializeField] private float dashingTime = 0.3f;
     [SerializeField] private float dashingCooldown = 1f;
-
+  
     
     
     private void Start()
     {
         _playerSpeed = _normalSpeed;
+
     }
 
 
