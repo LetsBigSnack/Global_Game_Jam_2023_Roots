@@ -147,3 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 3
+  spawnedEnemy: {fileID: 6937306494568708636, guid: 1c183716a43273447ac4b72c68a692e1, type: 3}
