@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 moveVector;
 
+    [SerializeField] private Animator _playerAnim;
+
     [Header("Dash")] 
     [SerializeField] private bool canDash = true;
     [SerializeField] private bool isDashing;
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Start()
     {
+        _playerAnim = GetComponent<Animator>();
         _playerSpeed = _normalSpeed;
 
     }
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         playerRB.velocity = new Vector2(moveVector.x * _playerSpeed, moveVector.y * _playerSpeed);
+        SetDirectionValues();
     }
 
     public void MovePlayer(InputAction.CallbackContext context)
@@ -46,6 +50,13 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
+
+    public void SetDirectionValues()
+    {
+        _playerAnim.SetFloat("moveVector.x", moveVector.x);
+        _playerAnim.SetFloat("moveVector.y", moveVector.y);
+    }
+
 
     private IEnumerator Dash()
     {
