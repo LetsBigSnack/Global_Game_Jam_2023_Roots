@@ -24,8 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
         double hypotenuse = Math.Sqrt(x_Direction * x_Direction + y_Direction * y_Direction);
         float x_Direction_normalized = (float)(x_Direction / hypotenuse);
         float y_Direction_normalized = (float)(y_Direction / hypotenuse);
-
-        //_enemyRB.velocity = new Vector2(x_Direction_normalized * _movementSpeed, y_Direction_normalized * _movementSpeed);
+        _enemyRB.velocity = new Vector2(x_Direction_normalized * _movementSpeed, y_Direction_normalized * _movementSpeed);
         
     }
 }

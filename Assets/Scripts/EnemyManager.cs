@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject _enemyPrefab;
     [SerializeField] private float _spawnRadius = 10f;
     [SerializeField] private float _spawningRate = 1f;
+    [SerializeField] private float _overlapRadius = 0.5f;
     private GameObject _player;
     
     // Start is called before the first frame update
@@ -30,14 +31,16 @@ public class EnemyManager : MonoBehaviour
         
         return new Vector2(_player.transform.position.x + x_position, _player.transform.position.y + y_position);
     }
-
+    
     private IEnumerator SpawnEnemy(float interval, GameObject enemy)
     {
-        //TODO check if enemy can be spawned
-        // Reduce Interval
         yield return new WaitForSeconds(interval);
         Vector2 newPosition = GetPointOnRadius();
-        GameObject newEnemy = Instantiate(enemy, new Vector3(newPosition.x, newPosition.y, 0), Quaternion.identity);
+        Collider2D[] collisionOnNewPoint = Physics2D.OverlapCircleAll(newPosition, _overlapRadius);
+        if (collisionOnNewPoint.Length <= 0)
+        {
+            GameObject newEnemy = Instantiate(enemy, new Vector3(newPosition.x, newPosition.y, 0), Quaternion.identity);
+        }
         StartCoroutine(SpawnEnemy(_spawningRate, _enemyPrefab));
     }
 }
