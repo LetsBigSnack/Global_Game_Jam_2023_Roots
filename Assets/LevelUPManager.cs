@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LevelUPManager : MonoBehaviour
 {
     public PowerUps[] _powerUpOptions;
     public List<PowerUps> _allAvailablePowerUps;
+    public List<ImageInfo> images;
+
+    public GameObject option1;
+    public GameObject option2;
+    public GameObject option3;
+
+    public TextMeshProUGUI text1;
+    public TextMeshProUGUI text2;
+    public TextMeshProUGUI text3;
     
     // Start is called before the first frame update
     void Start()
@@ -26,6 +38,7 @@ public class LevelUPManager : MonoBehaviour
 
     private void ShuffelOptions()
     {
+        //TODO shuffel nicht random
         SwordController sc = FindObjectOfType<SwordController>();
         if (sc.currentLength >= sc.maxLength)
         {
@@ -36,6 +49,8 @@ public class LevelUPManager : MonoBehaviour
         System.Random rnd = new System.Random();
         _allAvailablePowerUps = _allAvailablePowerUps.OrderBy(x => rnd.Next()).Take(3).ToList();
 
+        //
+        
         _powerUpOptions[0] = _allAvailablePowerUps[0];
         _powerUpOptions[1] = _allAvailablePowerUps[1];
         _powerUpOptions[2] = _allAvailablePowerUps[2];
@@ -45,6 +60,12 @@ public class LevelUPManager : MonoBehaviour
     {
         //Pause Game
         disableAllEntities();
+        option1.GetComponent<RawImage>().texture = images.Where(c => c.name == _powerUpOptions[0]._name).Single().value;
+        text1.text = _powerUpOptions[0]._description;
+        option2.GetComponent<RawImage>().texture = images.Where(c => c.name == _powerUpOptions[1]._name).Single().value;
+        text2.text = _powerUpOptions[1]._description;
+        option3.GetComponent<RawImage>().texture = images.Where(c => c.name == _powerUpOptions[2]._name).Single().value;
+        text3.text = _powerUpOptions[2]._description;
         // Create 3 Options
         gameObject.SetActive(true);
     }

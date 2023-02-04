@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class PowerUps
 {
-    protected LevelUPManager _levelUpManager;
-    protected PlayerMovement _player { get; set; }
-    private string _name;
-    private string _description;
-    private Image _image;
-
+    public LevelUPManager _levelUpManager;
+    public PlayerMovement _player { get; set; }
+    public string _name;
+    public string _description;
+    
     public PowerUps(LevelUPManager lvlUPManger, PlayerMovement player)
     {
         _levelUpManager = lvlUPManger;
