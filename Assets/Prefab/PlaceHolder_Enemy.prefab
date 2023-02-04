@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7932581635448532545}
   - component: {fileID: 7932581635448532546}
   - component: {fileID: 7932581635448532547}
+  - component: {fileID: 3948694572771412324}
   m_Layer: 0
   m_Name: PlaceHolder_Enemy
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.7567023, g: 0.764151, b: 0.17661981, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -152,3 +153,23 @@ MonoBehaviour:
   currentinvincibilityFrame: 0
   isInvincible: 1
   exp: {fileID: 3647000408705859400, guid: 631f9190fcaec38419e1425c60a9da0d, type: 3}
+--- !u!95 &3948694572771412324
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7932581635448532572}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
