@@ -65,4 +65,9 @@ public class SwordController : MonoBehaviour
         canAttack = true;
     }
     
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+       return;
+    }
+    
 }

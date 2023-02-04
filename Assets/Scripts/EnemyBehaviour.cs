@@ -10,10 +10,10 @@ public class EnemyBehaviour : MonoBehaviour
     private GameObject _player;
     [SerializeField] private float _movementSpeed = 3;
     [SerializeField] private GameObject spawnedEnemy;
-    [SerializeField] private int invincibilityFrame = 15;
+    [SerializeField] private int invincibilityFrame = 5;
     [SerializeField] private int currentinvincibilityFrame = 0;
     [SerializeField] private bool isInvincible = true;
-
+    [SerializeField] private GameObject exp;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +48,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.tag);
         if (col.gameObject.tag == "sword" && !isInvincible)
         {
             if (spawnedEnemy)
@@ -63,7 +62,7 @@ public class EnemyBehaviour : MonoBehaviour
                 GameObject newEnemy1 = Instantiate(spawnedEnemy, new Vector3(transform.position.x-x_Direction_normalized*2, transform.position.y, 0), Quaternion.identity);
                 GameObject newEnemy2 = Instantiate(spawnedEnemy, new Vector3(transform.position.x, transform.position.y-y_Direction_normalized*2, 0), Quaternion.identity);
             }
-            Debug.Log("HIT");
+            GameObject exp1 = Instantiate(exp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             Destroy(this.gameObject);
         }
     }

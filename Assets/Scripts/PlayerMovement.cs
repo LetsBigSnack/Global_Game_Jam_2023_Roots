@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,14 +21,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingSpeed = 32f;
     [SerializeField] private float dashingTime = 0.3f;
     [SerializeField] private float dashingCooldown = 1f;
-  
-    
-    
+
+    [Header("Exp")] 
+    [SerializeField] private int currentLevel = 1;
+    [SerializeField] private int levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
+    [SerializeField] private int currentXP = 0;
+
     private void Start()
     {
         _playerAnim = GetComponent<Animator>();
         _playerSpeed = _normalSpeed;
-
+        currentLevel = 1;
+        levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
     }
 
 
@@ -69,5 +74,21 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
-    
+
+    public void collectXP()
+    {
+        currentXP++;
+        if (currentXP >= levelThreshold)
+        {
+            currentLevel++;
+            levelThreshold = CalculateNextThreshold(currentLevel);
+            Debug.Log("LEVEL UP: " + currentLevel);
+        }
+    }
+
+    private int CalculateNextThreshold(int level)
+    {
+        return (int) Math.Round((float)(4 * (level*level*level)) / 5);
+    }
+
 }
