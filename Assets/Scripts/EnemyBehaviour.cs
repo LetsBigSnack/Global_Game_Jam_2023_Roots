@@ -15,6 +15,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] public float _value;
     [SerializeField] public Counter _counter;
     [SerializeField] private GameObject spawnedEnemy;
+    [SerializeField] private GameObject explosion;
     [SerializeField] private int invincibilityFrame = 5;
     [SerializeField] private int currentinvincibilityFrame = 0;
     [SerializeField] private bool isInvincible = true;
@@ -68,6 +69,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 _counter._points.RuntimeValue += _value;
                 _counter._enemies.RuntimeValue += 1;
+                GameObject newExplosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                 isDead = true;
                 if (spawnedEnemy)
                 {
