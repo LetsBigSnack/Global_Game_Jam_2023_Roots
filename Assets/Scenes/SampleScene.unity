@@ -639,6 +639,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 175371930843594172, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
+      propertyPath: _enemyPrefab
+      value: 
+      objectReference: {fileID: 4914929375527221335, guid: 24d568dac53d622429f9fc077481d453, type: 3}
     - target: {fileID: 4596173539706112642, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
       propertyPath: m_Name
       value: UI
