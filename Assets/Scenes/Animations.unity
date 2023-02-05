@@ -235,10 +235,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7932581635448532547, guid: 44c48ea873db33b4282640f9eac0ad89, type: 3}
-      propertyPath: _value
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7932581635448532551, guid: 44c48ea873db33b4282640f9eac0ad89, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -308,10 +304,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5598540094127799485, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_TagString
-      value: hitBox
-      objectReference: {fileID: 0}
     - target: {fileID: 5926823183103215407, guid: af220ca90349db342824d8750dedb484, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -358,6 +350,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af220ca90349db342824d8750dedb484, type: 3}
+--- !u!1 &853825521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5598540094127799485, guid: af220ca90349db342824d8750dedb484, type: 3}
+  m_PrefabInstance: {fileID: 640815701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &853825524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853825521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bb5dbe4637ea84db84a7f018b14b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
 --- !u!4 &1178519549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5926823183103215407, guid: af220ca90349db342824d8750dedb484, type: 3}
