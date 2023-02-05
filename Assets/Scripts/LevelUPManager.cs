@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,22 +40,25 @@ public class LevelUPManager : MonoBehaviour
 
     private void ShuffelOptions()
     {
-        //TODO shuffel nicht random
-        SwordController sc = FindObjectOfType<SwordController>();
-        if (sc.currentLength >= sc.maxLength)
+        List<int> choices = new List<int>();
+        bool finisehdGenerating = false;
+        System.Random rnG = new System.Random();
+        while (!finisehdGenerating)
         {
-            var itemToRemove = _allAvailablePowerUps.Single(r => r.GetType() == typeof(LengthPowerUp));
-            _allAvailablePowerUps.Remove(itemToRemove);
+            int tempNumber = rnG.Next(0, _allAvailablePowerUps.Count);
+            if (!choices.Contains(tempNumber))
+            {
+                choices.Add(tempNumber);
+                if (choices.Count == 3)
+                {
+                    finisehdGenerating = true;
+                }
+            }
         }
         
-        System.Random rnd = new System.Random();
-        _allAvailablePowerUps = _allAvailablePowerUps.OrderBy(x => rnd.Next()).Take(3).ToList();
-
-        //
-        
-        _powerUpOptions[0] = _allAvailablePowerUps[0];
-        _powerUpOptions[1] = _allAvailablePowerUps[1];
-        _powerUpOptions[2] = _allAvailablePowerUps[2];
+        _powerUpOptions[0] = _allAvailablePowerUps[choices[0]];
+        _powerUpOptions[1] = _allAvailablePowerUps[choices[1]];
+        _powerUpOptions[2] = _allAvailablePowerUps[choices[2]];
     }
     
     public void ShowLevelUp()

@@ -9,7 +9,7 @@ public class HealthPowerUp : PowerUps
     public HealthPowerUp(LevelUPManager lvlManger,  PlayerMovement player) : base(lvlManger,player)
     {
         base._name = "health";
-        base._description = "Adds Health and Heals the Player";
+        base._description = "Heals the Player";
     }
     
     public override void ApplyEffect()
