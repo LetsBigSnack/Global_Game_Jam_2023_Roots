@@ -91,7 +91,7 @@ public class EnemyManager : MonoBehaviour
             
             bool isInsideMap = _mapContent.GetComponent<Collider2D>().bounds.Contains(new Vector3(newPosition.x, newPosition.y, 10));
             
-            if (collisionOnNewPoint.Length <= 0 && isInsideMap)
+            if (collisionOnNewPoint.Length <= 0 /*&& isInsideMap*/)
             {
                 if (enabled)
                 {
