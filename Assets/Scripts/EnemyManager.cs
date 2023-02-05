@@ -14,6 +14,15 @@ public class EnemyManager : MonoBehaviour
     private GameObject _player;
     [SerializeField] private bool currentlySpawning = false;
     [SerializeField] private Coroutine _spawning;
+
+    [SerializeField] public int wave = 1;
+    [SerializeField] public FloatValues waves;
+    
+    [SerializeField] private GameObject[] _easyEnemies;
+    [SerializeField] private GameObject[] _mediumEnemies;
+    [SerializeField] private GameObject[] _hardEnemies;
+
+    [SerializeField] private GameObject[] _currentEnemies;
     
     // Start is called before the first frame update
     void Start()
@@ -25,9 +34,27 @@ public class EnemyManager : MonoBehaviour
     {
         if (!currentlySpawning)
         {
-            Debug.Log("VAR");
+            wave = _player.GetComponent<PlayerMovement>().currentLevel;
+            
+            _spawningRate *= 0.85f;
+            
+            waves.RuntimeValue = wave;
+            
+            if (wave > 8)
+            {
+                _currentEnemies = _hardEnemies;
+            }else if (wave > 4)
+            {
+                _currentEnemies = _mediumEnemies;
+            }
+            else
+            {
+                _currentEnemies = _easyEnemies;
+            }
+            
             currentlySpawning = true;
-            _spawning = StartCoroutine(SpawnEnemy(_spawningRate, _enemyPrefab));
+            _spawning = StartCoroutine(SpawnEnemy(_spawningRate, _currentEnemies));
+            
         }
     }
     
@@ -42,8 +69,11 @@ public class EnemyManager : MonoBehaviour
         return new Vector2(_player.transform.position.x + x_position, _player.transform.position.y + y_position);
     }
     
-    private IEnumerator SpawnEnemy(float interval, GameObject enemy)
+    private IEnumerator SpawnEnemy(float interval, GameObject[] enemies)
     {
+        System.Random random = new System.Random();
+        int rngIndex = random.Next(0, enemies.Length);
+        GameObject enemy = enemies[rngIndex];
         if (!enabled)
         {
             StopAllCoroutines();
@@ -60,7 +90,7 @@ public class EnemyManager : MonoBehaviour
                     GameObject newEnemy = Instantiate(enemy, new Vector3(newPosition.x, newPosition.y, 0), Quaternion.identity);
                 }
             }
-            StartCoroutine(SpawnEnemy(_spawningRate, _enemyPrefab));
+            StartCoroutine(SpawnEnemy(_spawningRate, _currentEnemies));
         }
     }
 

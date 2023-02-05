@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingCooldown = 1f;
 
     [Header("Exp")] 
-    [SerializeField] private int currentLevel = 1;
+    [SerializeField] public int currentLevel = 1;
     [SerializeField] private int levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
     [SerializeField] private float currentXP = 0;
     [SerializeField] private float xpMultiplicator = 1f;
@@ -140,7 +140,10 @@ public class PlayerMovement : MonoBehaviour
     public void AddHealth(float health)
     {
         _health += health;
-        _maxHealth += health;
+        if (_health >= _maxHealth)
+        {
+            _health = _maxHealth;
+        }
     }
 
     public void AddAura()

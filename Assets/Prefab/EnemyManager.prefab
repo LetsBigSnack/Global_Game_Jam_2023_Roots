@@ -45,8 +45,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedDebuff: 1
-  _enemyPrefab: {fileID: 7932581635448532572, guid: 44c48ea873db33b4282640f9eac0ad89, type: 3}
+  _enemyPrefab: {fileID: 4914929375527221335, guid: 24d568dac53d622429f9fc077481d453, type: 3}
   _spawnRadius: 10
   _spawningRate: 2
   _overlapRadius: 0.5
   currentlySpawning: 0
+  wave: 1
+  waves: {fileID: 11400000, guid: d2e13a769d7e7444aa15c34941f21d69, type: 2}
+  _easyEnemies:
+  - {fileID: 4914929375527221335, guid: 24d568dac53d622429f9fc077481d453, type: 3}
+  - {fileID: 516173379679095210, guid: c18275fe09a237d4d82a9a5adde0b4bf, type: 3}
+  - {fileID: 8778640644799313135, guid: 7613e4e0664eccc418c76c7512e71ed2, type: 3}
+  - {fileID: 5554478637136402859, guid: fecd53692c42db94181109a7bbe9213a, type: 3}
+  - {fileID: 8689907272188408571, guid: fc04de9b921ece643a4975f0f7fee1ae, type: 3}
+  _mediumEnemies:
+  - {fileID: 5554478637136402859, guid: fecd53692c42db94181109a7bbe9213a, type: 3}
+  - {fileID: 8689907272188408571, guid: fc04de9b921ece643a4975f0f7fee1ae, type: 3}
+  - {fileID: 3532347069013123272, guid: e7a959f6e0567504a84dc67a1df22e6a, type: 3}
+  - {fileID: 7659222460547291529, guid: 051dad9d12fd2b7448881a180408d8f8, type: 3}
+  - {fileID: 6243510837120896443, guid: 528779aac7138da449e4ba072ddfcc6c, type: 3}
+  - {fileID: 1808793406146173108, guid: b8adfc31b98ed4e418d48ba4c96c684e, type: 3}
+  - {fileID: 800914593988983981, guid: 7be173d8718a8e243ad978c130d61753, type: 3}
+  - {fileID: 3900021782840235716, guid: af87822499282bb478be88941dad12c2, type: 3}
+  _hardEnemies:
+  - {fileID: 1808793406146173108, guid: b8adfc31b98ed4e418d48ba4c96c684e, type: 3}
+  - {fileID: 800914593988983981, guid: 7be173d8718a8e243ad978c130d61753, type: 3}
+  - {fileID: 3900021782840235716, guid: af87822499282bb478be88941dad12c2, type: 3}
+  - {fileID: 351984650718131197, guid: afdf74a493a83f5448a799c82e8d6062, type: 3}
+  - {fileID: 524941493820246653, guid: 0c4189b37a998ba4f8b1ed6d77a25e72, type: 3}
+  - {fileID: 5634899784559243227, guid: 067efa0796639c340a15738119f93da9, type: 3}
+  - {fileID: 3466436552986143932, guid: ce823c41a6158cd4ead2e245e69b0437, type: 3}
+  - {fileID: 6771116178570541906, guid: 7fab331d7e026e14f92fba6bcc93b7d1, type: 3}
+  _currentEnemies: []
