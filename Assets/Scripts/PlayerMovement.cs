@@ -43,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("UI")] 
     [SerializeField] private LevelUPManager _levelUpManager;
+
+    [SerializeField] private ChangeScene _changeScene;
+    
     
     private void Start()
     {
@@ -54,13 +57,16 @@ public class PlayerMovement : MonoBehaviour
         currentLevel = 1;
         levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
         _levelUpManager = Resources.FindObjectsOfTypeAll<LevelUPManager>()[0];
-        
+        _changeScene = FindObjectOfType<ChangeScene>();
     }
 
 
     void Update()
     {
-        Debug.Log("Update");
+        if (_health <= 0)
+        {
+            _changeScene.changeScene();
+        }
         playerRB.velocity = new Vector2(moveVector.x * _playerSpeed, moveVector.y * _playerSpeed);
         SetDirectionValues();
     }

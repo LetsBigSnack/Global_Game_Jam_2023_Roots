@@ -39,7 +39,7 @@ public class EnemyManager : MonoBehaviour
         {
             wave = _player.GetComponent<PlayerMovement>().currentLevel;
             
-            _spawningRate *= 0.85f;
+            _spawningRate *= 0.9f;
             
             waves.RuntimeValue = wave;
             
@@ -86,6 +86,7 @@ public class EnemyManager : MonoBehaviour
             yield return new WaitForSeconds(interval);
             Vector2 newPosition = GetPointOnRadius();
             Collider2D[] collisionOnNewPoint = Physics2D.OverlapCircleAll(newPosition, _overlapRadius, _layerMask);
+            
             
             
             bool isInsideMap = _mapContent.GetComponent<Collider2D>().bounds.Contains(new Vector3(newPosition.x, newPosition.y, 10));

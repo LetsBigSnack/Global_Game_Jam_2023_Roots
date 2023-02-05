@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +31,16 @@ public class Counter : MonoBehaviour
     {
         if (_saved.RuntimeValue != 1)
         {
-            _finishedTime.RuntimeValue += Time.deltaTime;
+            try
+            {
+                GameObject player = FindObjectOfType<PlayerMovement>().gameObject;
+                _finishedTime.RuntimeValue += Time.deltaTime;
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
         }
         if (points != null)
         {

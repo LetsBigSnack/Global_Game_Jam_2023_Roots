@@ -10,7 +10,7 @@ public class CollectXP : MonoBehaviour
     {
         _player = FindObjectOfType<PlayerMovement>();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "exp")

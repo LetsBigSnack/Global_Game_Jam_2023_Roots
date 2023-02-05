@@ -64,6 +64,7 @@ public class LevelUPManager : MonoBehaviour
     public void ShowLevelUp()
     {
         //Pause Game
+        Time.timeScale = 0;
         disableAllEntities();
         option1.GetComponent<RawImage>().texture = images.Where(c => c.name == _powerUpOptions[0]._name).Single().value;
         text1.text = _powerUpOptions[0]._description;
@@ -96,6 +97,7 @@ public class LevelUPManager : MonoBehaviour
         _currentLevel.RuntimeValue += 1;
         ShuffelOptions();
         enableAllEntities();
+        Time.timeScale = 1;
         gameObject.SetActive(false);
     }
 
