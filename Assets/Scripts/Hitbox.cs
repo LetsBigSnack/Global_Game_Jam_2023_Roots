@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _player;
+    [SerializeField] private AudioSource _dmg;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class Hitbox : MonoBehaviour
         {
             //add a boolean to check if the whole DMG is possible -> otherwise u might not get dmg, but the flashing would start. Fixed that.
            _player._invincible = true;
+            _dmg.Play();
             _player._health -= other.gameObject.GetComponent<EnemyBehaviour>()._dmg;
             if (_player._invinc != null)
             {

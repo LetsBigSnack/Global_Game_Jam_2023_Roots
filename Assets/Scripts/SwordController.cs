@@ -10,6 +10,8 @@ public class SwordController : MonoBehaviour
     [SerializeField] private float radius = 1.5f;
     [SerializeField] private Transform center;
     [SerializeField] private Camera cam;
+    [SerializeField] private AudioSource _swing;
+    [SerializeField] private TrailRenderer _swordSwing;
     
     [SerializeField] private BoxCollider2D _collider2D;
 
@@ -27,6 +29,7 @@ public class SwordController : MonoBehaviour
         center = pivot.transform;
         transform.parent = pivot;
         transform.position += Vector3.up * radius;
+        _swordSwing = GetComponentInChildren<TrailRenderer>();
         _collider2D = GetComponent<BoxCollider2D>();
         _collider2D.enabled = false;
 
@@ -62,6 +65,8 @@ public class SwordController : MonoBehaviour
     private IEnumerator Attack()
     {
         _collider2D.enabled = true;
+        _swing.Play();
+        _swordSwing.emitting = true;
         BoxCollider2D[] childColliders = GetComponentsInChildren<BoxCollider2D>();
         foreach (var boxCollider2D in childColliders)
         {
@@ -69,6 +74,7 @@ public class SwordController : MonoBehaviour
         }
         canAttack = false;
         yield return new WaitForSeconds(_attackDuration);
+        _swordSwing.emitting = false;
         _collider2D.enabled = false;
         foreach (var boxCollider2D in childColliders)
         {
