@@ -106,9 +106,9 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-    public void collectXP()
+    public void collectXP(int value)
     {
-        currentXP += 1*xpMultiplicator;
+        currentXP += value*xpMultiplicator;
         if (currentXP >= levelThreshold)
         {
             currentLevel++;
@@ -143,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
     public void AddXpBonus()
     { 
         Debug.Log("I am XP");
-        xpMultiplicator *= 1.25f;
+        xpMultiplicator *= 1.20f;
         
     }
 
