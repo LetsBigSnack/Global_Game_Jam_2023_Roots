@@ -21,13 +21,16 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject[] _easyEnemies;
     [SerializeField] private GameObject[] _mediumEnemies;
     [SerializeField] private GameObject[] _hardEnemies;
-
+    [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject[] _currentEnemies;
+
+    private GameObject _mapContent;
     
     // Start is called before the first frame update
     void Start()
     {
         _player = FindObjectOfType<PlayerMovement>().gameObject;
+        _mapContent = FindObjectOfType<MapContent>().gameObject;
     }
 
     private void Update()
@@ -82,8 +85,12 @@ public class EnemyManager : MonoBehaviour
         { 
             yield return new WaitForSeconds(interval);
             Vector2 newPosition = GetPointOnRadius();
-            Collider2D[] collisionOnNewPoint = Physics2D.OverlapCircleAll(newPosition, _overlapRadius);
-            if (collisionOnNewPoint.Length <= 0)
+            Collider2D[] collisionOnNewPoint = Physics2D.OverlapCircleAll(newPosition, _overlapRadius, _layerMask);
+            
+            
+            bool isInsideMap = _mapContent.GetComponent<Collider2D>().bounds.Contains(new Vector3(newPosition.x, newPosition.y, 10));
+            
+            if (collisionOnNewPoint.Length <= 0 && isInsideMap)
             {
                 if (enabled)
                 {

@@ -90,7 +90,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void Bounce()
     {
-        _bounce.Play();
+        if (_bounce)
+        {
+            _bounce.Play();
+        }
     }
     private void OnDisable()
     {
