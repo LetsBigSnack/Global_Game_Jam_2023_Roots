@@ -483,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524746742406836620}
   - component: {fileID: 5423921840960597864}
-  - component: {fileID: 8331586494493072261}
+  - component: {fileID: 8183370548100542182}
   m_Layer: 0
   m_Name: hitBox
   m_TagString: hitBox
@@ -522,7 +522,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.000000059604645, y: -0.4295599}
   m_Size: {x: 0.57991827, y: 0.913422}
   m_Direction: 0
---- !u!114 &8331586494493072261
+--- !u!114 &8183370548100542182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
