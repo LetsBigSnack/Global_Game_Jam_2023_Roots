@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedDebuff: 1
   _enemyPrefab: {fileID: 4914929375527221335, guid: 24d568dac53d622429f9fc077481d453, type: 3}
-  _spawnRadius: 10
+  _spawnRadius: 15
   _spawningRate: 2
   _overlapRadius: 0.5
   currentlySpawning: 0
@@ -76,4 +76,7 @@ MonoBehaviour:
   - {fileID: 5634899784559243227, guid: 067efa0796639c340a15738119f93da9, type: 3}
   - {fileID: 3466436552986143932, guid: ce823c41a6158cd4ead2e245e69b0437, type: 3}
   - {fileID: 6771116178570541906, guid: 7fab331d7e026e14f92fba6bcc93b7d1, type: 3}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   _currentEnemies: []

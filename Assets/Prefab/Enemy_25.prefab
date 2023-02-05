@@ -127,6 +127,7 @@ MonoBehaviour:
   _value: 25
   _counter: {fileID: 0}
   spawnedEnemy: {fileID: 8689907272188408571, guid: fc04de9b921ece643a4975f0f7fee1ae, type: 3}
+  explosion: {fileID: 3589566685613331173, guid: e031dd3e77f440f448295481b899f6c3, type: 3}
   invincibilityFrame: 5
   currentinvincibilityFrame: 0
   isInvincible: 1
