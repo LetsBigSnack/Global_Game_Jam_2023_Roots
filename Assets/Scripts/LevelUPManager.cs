@@ -114,7 +114,15 @@ public class LevelUPManager : MonoBehaviour
 
         foreach (EnemyBehaviour enemyBehaviour in allEnemies)
         {
-            enemyBehaviour.enabled = false;
+            try
+            {
+                enemyBehaviour.enabled = false;
+            }
+            catch (Exception e)
+            {
+                
+            }
+            
         }
         
     }

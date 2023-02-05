@@ -39,7 +39,7 @@ public class EnemyManager : MonoBehaviour
         {
             wave = _player.GetComponent<PlayerMovement>().currentLevel;
             
-            _spawningRate *= 0.9f;
+            _spawningRate *= 0.95f;
             
             waves.RuntimeValue = wave;
             
@@ -91,7 +91,7 @@ public class EnemyManager : MonoBehaviour
             
             bool isInsideMap = _mapContent.GetComponent<Collider2D>().bounds.Contains(new Vector3(newPosition.x, newPosition.y, 10));
             
-            if (collisionOnNewPoint.Length <= 0 /*&& isInsideMap*/)
+            if (collisionOnNewPoint.Length <= 0 && isInsideMap)
             {
                 if (enabled)
                 {

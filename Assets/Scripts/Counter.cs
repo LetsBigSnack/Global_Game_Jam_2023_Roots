@@ -75,19 +75,19 @@ public class Counter : MonoBehaviour
             case  <= 500:
                 grade.text = "F";;
                 break;
-            case <= 1000f:
+            case <= 1000:
                 grade.text = "D";
                 break;
-            case <= 1500f:
+            case <= 2000:
                 grade.text = "C";
                 break;
-            case <= 2000:
+            case <= 3000:
                 grade.text = "B";
                 break;
-            case <= 2500:
+            case <= 5000:
                 grade.text = "A";
                 break;
-            case > 2500:
+            case > 9000:
                 grade.text = "S";
                 break;
         }
