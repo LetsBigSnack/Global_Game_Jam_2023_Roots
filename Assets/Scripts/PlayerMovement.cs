@@ -19,11 +19,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float _maxHealth = 40;
 
     [SerializeField] public Collider2D _hitBox;
-    [SerializeField] private Coroutine _invinc;
-    [SerializeField] private bool _invincible; 
-    [SerializeField] private Coroutine _flash;
-    [SerializeField] private Material _standard;
-    [SerializeField] private Material _hurt;
+    [SerializeField] public Coroutine _invinc;
+    [SerializeField] public bool _invincible; 
+    [SerializeField] public Coroutine _flash;
+    [SerializeField] public Material _standard;
+    [SerializeField] public Material _hurt;
 
     [Header("Dash")] 
     [SerializeField] private bool canDash = true;
@@ -135,36 +135,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("I am XP");
         xpMultiplicator *= 1.25f;
         
-    }
-
-    public void OnTriggerEnter2D(Collider2D other) {
-
-        if (other.gameObject.tag == "enemy" && gameObject.GetComponentInChildren<CapsuleCollider2D>().tag == "hitBox" && _invincible == false)
-        {
-            //add a boolean to check if the whole DMG is possible -> otherwise u might not get dmg, but the flashing would start. Fixed that.
-            _invincible = true;
-            _health -= other.gameObject.GetComponent<EnemyBehaviour>()._dmg;
-            if (_invinc != null)
-            {
-                StopCoroutine(_invinc);
-            }
-            _invinc = StartCoroutine(invincibility());
-
-            //starting a flash routine for feedback to the player
-            if (_flash != null)
-            {
-                StopCoroutine(_flash);
-            }
-            _flash = StartCoroutine(hurt());
-
-            //destroying the playerObject on health 0
-            if(_health <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    
-    
     }
 
     public void AddHealth(float health)
