@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other) {
 
-        if(other.gameObject.tag == "enemy" && _invincible == false)
+        if (other.gameObject.tag == "enemy" && gameObject.GetComponentInChildren<CapsuleCollider2D>().tag == "hitBox" && _invincible == false)
         {
             //add a boolean to check if the whole DMG is possible -> otherwise u might not get dmg, but the flashing would start. Fixed that.
             _invincible = true;

@@ -11,6 +11,8 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyManager manager;
     [SerializeField] private float _movementSpeed = 3;
     [SerializeField] public float _dmg;
+    [SerializeField] public float _value;
+    [SerializeField] public Counter _counter;
     [SerializeField] private GameObject spawnedEnemy;
     [SerializeField] private int invincibilityFrame = 5;
     [SerializeField] private int currentinvincibilityFrame = 0;
@@ -21,7 +23,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _counter = FindObjectOfType<Counter>();
         _player = FindObjectOfType<PlayerMovement>().gameObject;
         _enemyRB = GetComponent<Rigidbody2D>();
         manager = FindObjectOfType<EnemyManager>();
@@ -63,6 +65,8 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if (!isDead)
             {
+                _counter._points.RuntimeValue += _value;
+                _counter._enemies.RuntimeValue += 1;
                 isDead = true;
                 if (spawnedEnemy)
                 {

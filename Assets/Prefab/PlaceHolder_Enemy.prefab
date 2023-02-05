@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3948694572771412324}
   m_Layer: 0
   m_Name: PlaceHolder_Enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 3
   _dmg: 5
+  _value: 5
+  _counter: {fileID: 0}
   spawnedEnemy: {fileID: 6937306494568708636, guid: 1c183716a43273447ac4b72c68a692e1, type: 3}
   invincibilityFrame: 15
   currentinvincibilityFrame: 0

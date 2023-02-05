@@ -11,6 +11,7 @@ public class LevelUPManager : MonoBehaviour
     public PowerUps[] _powerUpOptions;
     public List<PowerUps> _allAvailablePowerUps;
     public List<ImageInfo> images;
+    public FloatValues _currentLevel;
 
     public GameObject option1;
     public GameObject option2;
@@ -88,6 +89,7 @@ public class LevelUPManager : MonoBehaviour
 
     public void CloseLevelUp()
     {
+        _currentLevel.RuntimeValue += 1;
         ShuffelOptions();
         enableAllEntities();
         gameObject.SetActive(false);

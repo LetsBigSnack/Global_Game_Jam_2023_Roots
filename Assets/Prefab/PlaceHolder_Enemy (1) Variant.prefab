@@ -75,5 +75,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaceHolder_Enemy (1) Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7932581635448532572, guid: 44c48ea873db33b4282640f9eac0ad89, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44c48ea873db33b4282640f9eac0ad89, type: 3}
