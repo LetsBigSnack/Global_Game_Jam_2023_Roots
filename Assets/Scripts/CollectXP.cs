@@ -15,7 +15,7 @@ public class CollectXP : MonoBehaviour
     {
         if (col.gameObject.tag == "exp")
         {
-            _player.collectXP();
+            _player.collectXP(col.gameObject.GetComponent<FollowPlayer>().value);
             Destroy(col.gameObject);
         }
     }

@@ -82,6 +82,7 @@ public class EnemyBehaviour : MonoBehaviour
                     GameObject newEnemy2 = Instantiate(spawnedEnemy, new Vector3(transform.position.x, transform.position.y-y_Direction_normalized*2, 0), Quaternion.identity);
                 }
                 GameObject exp1 = Instantiate(exp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                exp1.GetComponent<FollowPlayer>().value = (int) _value;
                 Destroy(this.gameObject);
             }
             

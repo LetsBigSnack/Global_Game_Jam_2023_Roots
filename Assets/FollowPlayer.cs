@@ -7,6 +7,8 @@ public class FollowPlayer : MonoBehaviour
 {
     private PlayerMovement _player;
     private bool searchingPlayer;
+    public int value;
+    
     private void Start()
     {
         _player = FindObjectOfType<PlayerMovement>();
