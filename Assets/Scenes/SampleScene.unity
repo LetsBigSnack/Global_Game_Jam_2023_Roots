@@ -1280,14 +1280,6 @@ PrefabInstance:
       propertyPath: _easyEnemies.Array.data[5]
       value: 
       objectReference: {fileID: 3532347069013123272, guid: e7a959f6e0567504a84dc67a1df22e6a, type: 3}
-    - target: {fileID: 266225944635759643, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 5e2a67d675a9abb49a4421e6a0de3bb0, type: 3}
-    - target: {fileID: 266225944635759643, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4596173539706112642, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2664,28 +2656,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 814705530778746657, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_Time
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 814705530778746657, guid: af220ca90349db342824d8750dedb484, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 814705530778746657, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_Parameters.colorGradient.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 814705530778746657, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.a
-      value: 0.43137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 814705530778746657, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 814705530778746657, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0
+    - target: {fileID: 1544285927872520651, guid: af220ca90349db342824d8750dedb484, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3612890509715810956, guid: af220ca90349db342824d8750dedb484, type: 3}
       propertyPath: cam
@@ -2738,10 +2714,6 @@ PrefabInstance:
     - target: {fileID: 5926823183103215407, guid: af220ca90349db342824d8750dedb484, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6501366591610458049, guid: af220ca90349db342824d8750dedb484, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af220ca90349db342824d8750dedb484, type: 3}
