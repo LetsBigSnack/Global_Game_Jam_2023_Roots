@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingSpeed = 32f;
     [SerializeField] private float dashingTime = 0.3f;
     [SerializeField] private float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer _dashTrail;
 
     [Header("Exp")] 
     [SerializeField] public int currentLevel = 1;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         _health = _maxHealth;
         _playerAnim = GetComponent<Animator>();
         _playerSprite = GetComponent<SpriteRenderer>();
+        _dashTrail = GetComponent<TrailRenderer>();
         _playerSpeed = _normalSpeed;
         currentLevel = 1;
         levelThreshold = (int) Math.Round((float)(4 * (1*1*1)) / 5);
@@ -89,8 +91,10 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         isDashing = true;
         _playerSpeed = dashingSpeed;
+        _dashTrail.emitting = true;
         yield return new WaitForSeconds(dashingTime);
         isDashing = false;
+        _dashTrail.emitting = false;
         _playerSpeed = _normalSpeed;
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
