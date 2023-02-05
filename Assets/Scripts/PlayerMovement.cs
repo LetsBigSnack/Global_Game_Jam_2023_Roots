@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Material _hurt;
 
     [Header("Dash")] 
-    [SerializeField] private bool canDash = true;
+    [SerializeField] public bool canDash = true;
     [SerializeField] private bool isDashing;
     [SerializeField] private float dashingSpeed = 32f;
     [SerializeField] private float dashingTime = 0.3f;

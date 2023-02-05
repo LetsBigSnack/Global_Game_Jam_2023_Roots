@@ -15,7 +15,7 @@ public class SwordController : MonoBehaviour
     
     [SerializeField] private BoxCollider2D _collider2D;
 
-    [SerializeField] private bool canAttack = true;
+    [SerializeField] public bool canAttack = true;
     [SerializeField] private float _attackDuration = 0.3f;
     [SerializeField] private float _attackCooldown = 0.5f;
     [SerializeField] private GameObject _swordHead;
