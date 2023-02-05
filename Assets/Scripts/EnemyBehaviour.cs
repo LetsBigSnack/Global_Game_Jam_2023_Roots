@@ -11,6 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyManager manager;
     [SerializeField] private float _movementSpeed = 3;
     [SerializeField] public float _dmg;
+    [SerializeField] private AudioSource _bounce;
     [SerializeField] public float _value;
     [SerializeField] public Counter _counter;
     [SerializeField] private GameObject spawnedEnemy;
@@ -87,6 +88,10 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
+    public void Bounce()
+    {
+        _bounce.Play();
+    }
     private void OnDisable()
     {
         _enemyRB.velocity = new Vector2();

@@ -228,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 3
   _dmg: 9
+  _bounce: {fileID: 2355223100732875148, guid: 8003da0974abcee48ba64e0049bcbbbd, type: 3}
   _value: 81
   _counter: {fileID: 0}
   spawnedEnemy: {fileID: 1808793406146173108, guid: b8adfc31b98ed4e418d48ba4c96c684e, type: 3}
