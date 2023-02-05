@@ -1372,6 +1372,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4596173539706112646, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8502153717669134890, guid: b111a0e0779952743bf8b0ef91dfe419, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2662,18 +2666,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 6945639753288054663}
-    - target: {fileID: 2105177104159186989, guid: 3b9fe01c8cbed854eb1296704d3a9038, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.13725491
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105177104159186989, guid: 3b9fe01c8cbed854eb1296704d3a9038, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.15686275
-      objectReference: {fileID: 0}
-    - target: {fileID: 2105177104159186989, guid: 3b9fe01c8cbed854eb1296704d3a9038, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.24705884
-      objectReference: {fileID: 0}
     - target: {fileID: 2105177104159186991, guid: 3b9fe01c8cbed854eb1296704d3a9038, type: 3}
       propertyPath: m_Name
       value: Main Camera
